@@ -46,3 +46,5 @@ uv run pytest
 
 - [SWE-bench Verified](https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified): the `pytest-dev/pytest` rows.
 - [Qodo PR-Review-Bench](https://huggingface.co/datasets/Qodo/PR-Review-Bench): 100 PRs with their labeled issues.
+
+See `data/NOTICE.md` for each source's terms.
