@@ -1,0 +1,2 @@
+{"id": "fresh-13665", "repo": "pydantic/pydantic", "source": "regression", "bug_pr_url": "https://github.com/pydantic/pydantic/pull/13665", "bug_pr_title": "Take `ser_json_temporal` into account when generating JSON Schema", "fix_pr_url": "https://github.com/pydantic/pydantic/pull/13711"}
+{"id": "fresh-13890", "repo": "pydantic/pydantic", "source": "revert", "bug_pr_url": "https://github.com/pydantic/pydantic/pull/13890", "bug_pr_title": "Respect config in `TypeAdapter.json_schemas()`", "fix_pr_url": "https://github.com/pydantic/pydantic/pull/13951"}

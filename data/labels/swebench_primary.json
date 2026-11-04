@@ -1,0 +1,107 @@
+{
+  "swe-5262": {
+    "file": "src/_pytest/capture.py",
+    "start_line": 449,
+    "end_line": 450,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-5809": {
+    "file": "src/_pytest/pastebin.py",
+    "start_line": 80,
+    "end_line": 84,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-5840": {
+    "file": "src/_pytest/config/__init__.py",
+    "start_line": 438,
+    "end_line": 438,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-6197": {
+    "file": "src/_pytest/python.py",
+    "start_line": 642,
+    "end_line": 642,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-6202": {
+    "file": "src/_pytest/python.py",
+    "start_line": 288,
+    "end_line": 289,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-7205": {
+    "file": "src/_pytest/setuponly.py",
+    "start_line": 69,
+    "end_line": 69,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-7236": {
+    "file": "src/_pytest/unittest.py",
+    "start_line": 223,
+    "end_line": 223,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-7324": {
+    "file": "src/_pytest/mark/expression.py",
+    "start_line": 164,
+    "end_line": 164,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-7521": {
+    "file": "src/_pytest/capture.py",
+    "start_line": 390,
+    "end_line": 391,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-7571": {
+    "file": "src/_pytest/logging.py",
+    "start_line": 347,
+    "end_line": 348,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-8399": {
+    "file": "src/_pytest/unittest.py",
+    "start_line": 147,
+    "end_line": 147,
+    "source": "checker suggestion, accepted by a human reviewer",
+    "in_diff": true
+  },
+  "swe-10051": {
+    "file": "src/_pytest/logging.py",
+    "start_line": 443,
+    "end_line": 443,
+    "source": "checker suggestion, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-10081": {
+    "file": "src/_pytest/unittest.py",
+    "start_line": 319,
+    "end_line": 319,
+    "source": "checker agreed hunk, agreed on re-check",
+    "in_diff": true
+  },
+  "swe-5787": {
+    "file": "src/_pytest/reports.py",
+    "start_line": 181,
+    "end_line": 185,
+    "source": "checker suggestion, accepted by a human reviewer",
+    "in_diff": true
+  },
+  "swe-7490": {
+    "file": "src/_pytest/skipping.py",
+    "start_line": 257,
+    "end_line": 259,
+    "source": "checker suggestion, accepted by a human reviewer",
+    "in_diff": true
+  }
+}
