@@ -116,13 +116,19 @@ def oracle_check(case: Case) -> dict:
         # No internet: the image already holds everything the tests need.
         sbx = Sandbox.create(template_name(case), timeout=1800, allow_internet_access=False)
         try:
-            res = run_eval(sbx, case, apply_gold=gold)
+            cov = not gold  # the coverage check runs on the buggy state
+            if cov:
+                write_covrc(sbx)
+            res = run_eval(sbx, case, apply_gold=gold, coverage=cov)
             out[state] = {t: outcome(res, t) for t in f2p}
+            if cov:
+                out["coverage"] = label_coverage(case, json.loads(sbx.files.read(COV_JSON)))
         finally:
             sbx.kill()
     out["passed"] = all(v != "PASSED" for v in out["buggy"].values()) and all(
         v == "PASSED" for v in out["fixed"].values()
     )
+    out["covered"] = all(not c["missed"] and c["executable"] for c in out["coverage"])
     return out
 
 
