@@ -45,7 +45,9 @@ def first_line(text: str) -> str:
 
 def assign_splits(cases: list[Case]) -> None:
     """50/50 dev and held-out within a slice, stable across rebuilds (hash order, then alternate)."""
-    # TODO: sort the cases by the SHA-256 of their id, then alternate "dev" and "heldout".
+    ordered = sorted(cases, key=lambda c: hashlib.sha256(c.id.encode()).hexdigest())
+    for i, c in enumerate(ordered):
+        c.split = "dev" if i % 2 == 0 else "heldout"
 
 
 PRIMARY = ROOT / "data" / "labels" / "swebench_primary.json"
@@ -84,7 +86,23 @@ def build_swebench() -> list[Case]:
         }
         meta = {"instance_id": iid, "difficulty": r["difficulty"], "created_at": r["created_at"]}
         files = sorted({f for f, _, _ in changed_old_ranges(r["patch"])})
-        # TODO: reverse the gold fix with invert(), then add the reverse-fix Case to `reverse`.
+        # The issue title would tell the reviewer the bug, so the PR gets a neutral title.
+        meta["issue_title"] = first_line(r["problem_statement"])
+        reverse.append(
+            Case(
+                id=case_id,
+                slice="swebench_reverse",
+                repo="pytest-dev/pytest",
+                title="Update " + ", ".join(Path(f).name for f in files),
+                diff=invert(r["patch"]),
+                labels=labels,
+                label_source="reviewed",  # cross-checked, disagreements settled by a human
+                buggy_sha=r["base_commit"],
+                fixed_sha=None,  # fixed state = base_commit + gold patch; not a commit
+                oracle=oracle,
+                meta=meta,
+            )
+        )
     return reverse
 
 

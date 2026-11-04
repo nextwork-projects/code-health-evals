@@ -1,10 +1,9 @@
 # Code Health Evals
 
-Starter code for the NextWork Project **Build Code Evals with E2B and Langfuse**.
+The finished build of the NextWork Project **Build Code Evals with E2B and Langfuse**. The Starter Repo is on `main`, and the `secret-mission` branch adds the Secret Mission.
 
 An AI code reviewer can sound right and still miss the bug. In this Project you build the dataset that measures it: 143 real pull request cases with labels that say where each bug is. You prove a case by running its tests in an E2B sandbox, write labels of your own, have a second model cross-check labels, and sync the dataset to Langfuse.
 
-The `solution` branch has the finished Project, and the `secret-mission` branch adds the Secret Mission.
 
 ## What's in the repo
 

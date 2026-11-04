@@ -1,5 +1,6 @@
+from code_health_evals.cases import load_cases
 from code_health_evals.models import Case, Label
-from code_health_evals.sandbox import label_coverage, outcome, parse_results, pytest_cmd
+from code_health_evals.sandbox import label_coverage, outcome, parse_results, pytest_cmd, template_name
 
 PYTEST_RA = """
 ==================================== PASSES ====================================
@@ -16,6 +17,24 @@ def test_parse_results():
         "testing/test_skipping.py::test_dynamic_xfail_set_during_runtest_failed": "FAILED",
         "testing/test_skipping.py::test_broken": "ERROR",
     }
+
+
+def test_every_reverse_case_has_an_oracle():
+    cases = load_cases(["swebench_reverse"])
+    assert len(cases) == 19
+    for c in cases:
+        assert c.oracle["fail_to_pass"] and c.oracle["gold_patch"] and c.oracle["image"]
+        assert template_name(c).startswith("swebench-pytest-")
+
+
+def test_limit_caps_each_slice():
+    cases = load_cases(["swebench_reverse", "qodo"], split="dev", limit=2)
+    assert [c.slice for c in cases] == ["qodo", "qodo", "swebench_reverse", "swebench_reverse"]
+
+
+def test_split_counts():
+    assert len(load_cases(split="dev")) == 71
+    assert len(load_cases(split="heldout")) == 72
 
 
 def test_label_coverage_flags_missed_and_non_executable_ranges():

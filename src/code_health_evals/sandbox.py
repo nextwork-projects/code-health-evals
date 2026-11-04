@@ -108,8 +108,22 @@ def run_eval(sbx, case: Case, apply_gold: bool, coverage: bool = False) -> dict[
 
 def oracle_check(case: Case) -> dict:
     """Run a case's tests on both states; `passed` means they fail on buggy and pass on fixed."""
-    # TODO: for each state, start a sandbox with no internet, call run_eval, and kill the sandbox.
-    raise NotImplementedError("write oracle_check")
+    from e2b import Sandbox
+
+    f2p = case.oracle["fail_to_pass"]
+    out: dict = {"case": case.id, "fail_to_pass": f2p}
+    for state, gold in (("buggy", False), ("fixed", True)):
+        # No internet: the image already holds everything the tests need.
+        sbx = Sandbox.create(template_name(case), timeout=1800, allow_internet_access=False)
+        try:
+            res = run_eval(sbx, case, apply_gold=gold)
+            out[state] = {t: outcome(res, t) for t in f2p}
+        finally:
+            sbx.kill()
+    out["passed"] = all(v != "PASSED" for v in out["buggy"].values()) and all(
+        v == "PASSED" for v in out["fixed"].values()
+    )
+    return out
 
 
 def label_coverage(case: Case, cov: dict) -> list[dict]:
